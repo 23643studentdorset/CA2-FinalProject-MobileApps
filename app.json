@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "CA2-FinalProject-MobileApps",
+    "slug": "CA2-FinalProject-MobileApps",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
