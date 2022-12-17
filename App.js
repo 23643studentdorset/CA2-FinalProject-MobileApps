@@ -14,8 +14,18 @@ export default function App() {
         console.error(error);
       } 
     }
+    const getPlacesTypes = async () => {
+      try {
+        const response = await fetch('https://gist.githubusercontent.com/saravanabalagi/541a511eb71c366e0bf3eecbee2dab0a/raw/bb1529d2e5b71fd06760cb030d6e15d6d56c34b3/place_types.json');
+        const placesTypes = await response.json();
+        console.log(placesTypes);
+      } 
+      catch (error) {
+        console.error(error);
+      } 
+    }
     getPlaces()
-
+    getPlacesTypes()
   }, []); 
 
   return (
