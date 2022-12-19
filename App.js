@@ -1,58 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import React from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './screens/Home';  
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  useState(() => { 
-    const getPlaces = async () => {
-      try {
-        const response = await fetch('https://gist.githubusercontent.com/saravanabalagi/541a511eb71c366e0bf3eecbee2dab0a/raw/bb1529d2e5b71fd06760cb030d6e15d6d56c34b3/places.json');
-        const places = await response.json();
-        console.log(places);
-      } 
-      catch (error) {
-        console.error(error);
-      } 
-    }
-    const getPlacesTypes = async () => {
-      try {
-        const response = await fetch('https://gist.githubusercontent.com/saravanabalagi/541a511eb71c366e0bf3eecbee2dab0a/raw/bb1529d2e5b71fd06760cb030d6e15d6d56c34b3/place_types.json');
-        const placesTypes = await response.json();
-        console.log(placesTypes);
-      } 
-      catch (error) {
-        console.error(error);
-      } 
-    }
-    getPlaces()
-    getPlacesTypes()
-  }, []); 
-
+  
   return (
-    <View style={styles.container}>
-    {/*Render our MapView*/}
-      <MapView
-        style={styles.map}
-        //specify our coordinates.
-        initialRegion={{
-          latitude: 53.4494762,
-          longitude: -7.8529786,
-          latitudeDelta:5.3,
-          longitudeDelta: 5.3,
-        }}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator> 
+    </NavigationContainer>
   );
 }
-//create our styling code:
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    flex: 1, //the container will fill the whole screen.
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
