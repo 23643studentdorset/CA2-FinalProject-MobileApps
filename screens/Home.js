@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Modal, Button, TouchableHighlight } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import MarkerModal from '../components/MarkerModal';
 
 const Home = () => {
     const [places, setPlaces] = useState([])
     const [placesTypes, setPlacesTypes] = useState([])
-
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedMarker, setSelectedMarker] = useState(null);
+    
     useState(() => { 
         const getPlaces = async () => {
           try {
@@ -69,6 +72,8 @@ const Home = () => {
             return "wheat";
         }   
       }
+
+     
       
       return (
         <View style={styles.container}>
@@ -88,9 +93,27 @@ const Home = () => {
                         coordinate={{latitude: place.latitude, longitude: place.longitude}}
                         title={place.name}
                         pinColor={GetAColor(place.place_type_id)}
-                       />
-                ))}    
-            </MapView> 
+                        onPress={() => {
+                            setModalVisible(true);
+                            setSelectedMarker({
+                              title: place.name,
+                            })
+                          }}
+                        />
+                ))}
+               
+            </MapView>
+            <View>
+                <MarkerModal
+                    visible={modalVisible}
+                    marker = {selectedMarker}
+                    onClose={() => setModalVisible(false)}
+                />
+            </View>
+            
+
+      
+      
         </View>
       );
 }
