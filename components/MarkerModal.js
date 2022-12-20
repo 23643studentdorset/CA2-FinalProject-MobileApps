@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal, Text, Button, StyleSheet } from 'react-native';
+import { View, Modal, Text, Button, StyleSheet, Image } from 'react-native';
 
 function MarkerModal(props) {
   return (    
@@ -11,6 +11,20 @@ function MarkerModal(props) {
         >
         <View style={{marginTop: 22,}}>
           <View>
+            <View style={{alignItems:'center'}}>
+            <Image 
+              source={{
+                uri: props.marker.image,
+                method: 'GET',
+                headers: {
+                  'Cache-Control': 'no-cache',
+                },              
+              }}
+              cache='reload'
+              style={{ width: 640, height: 360 }}
+              />
+            </View>
+            
             <Text style={styles.title}>{props.marker.title}</Text>
             <Text style={styles.text}>Id: {props.marker.id}</Text>
             <Text style={styles.text}>Gaelic Name: {props.marker.gaelicName}</Text> 
