@@ -95,25 +95,26 @@ const Home = () => {
                         pinColor={GetAColor(place.place_type_id)}
                         onPress={() => {
                             setModalVisible(true);
-                            setSelectedMarker({
-                              title: place.name,
-                            })
+                              setSelectedMarker({
+                                title: place.name,
+                                id: place.id,
+                                gaelicName: place.gaelic_name!= null ? place.gaelic_name : "No Gaelic Name",
+                                type: placesTypes.find(type => type.id === place.place_type_id).name,
+                                latitude: place.latitude,
+                                longitude: place.longitude,
+                              })                           
                           }}
                         />
                 ))}
                
             </MapView>
-            <View>
+             <View>
                 <MarkerModal
                     visible={modalVisible}
-                    marker = {selectedMarker}
+                    marker = {selectedMarker!= null ? selectedMarker : {title: "No marker selected"}}
                     onClose={() => setModalVisible(false)}
                 />
-            </View>
-            
-
-      
-      
+            </View>     
         </View>
       );
 }
