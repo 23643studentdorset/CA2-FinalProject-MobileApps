@@ -21,4 +21,6 @@ The objective of this project is to develop a mobile app to showcase in map plac
 - [ ] Draw a semi-transparent blue circle around this marker with a radius of 10 km and show number of places within this radius
 - [ ] [Bonus] Create a slider to control the above radius in km (1-1000, default 10) and on change, update the circle on the map and update number of places within the radius info shown accordingly
 
-AAB link
+---
+
+Release [link](https://github.com/23643studentdorset/CA2-FinalProject-MobileApps/releases/tag/v1.0.0)
